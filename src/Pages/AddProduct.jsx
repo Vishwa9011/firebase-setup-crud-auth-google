@@ -6,7 +6,7 @@ import { db } from "../Firebase/firebase.js"
 const AddProduct = () => {
 
      const AddProduct = async () => {
-          const productRef = collection(db, 'products/glass/glass');
+          const productRef = collection(db, 'products');
           const data = {
                "productName": "Glass",
                "productBrand": "Vishwa",
