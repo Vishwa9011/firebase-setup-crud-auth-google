@@ -17,7 +17,7 @@ const Home = () => {
      }
 
      const getData = async () => {
-
+          
      }
 
      useEffect(() => {

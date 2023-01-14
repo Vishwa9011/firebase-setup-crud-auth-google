@@ -7,7 +7,6 @@
 2. firebase
 3. chakra-ui
 
-
 ### How to deploy you website on firebase
 1. npm run build
 2. npm install -g firebase-tools
