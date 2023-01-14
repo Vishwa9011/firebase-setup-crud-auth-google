@@ -21,3 +21,4 @@
 2. firebase deploy
 
 <!-- * 127.0.0 => localhost only for vite app-->
+<!-- toast({ title: "Product Updated", status: 'success', isClosable: true, position: 'top-right', }) -->

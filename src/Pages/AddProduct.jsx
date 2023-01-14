@@ -1,20 +1,21 @@
 import { Box, Button, Input } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from "../Firebase/firebase.js"
+
+// * Initial State;
+const initialState = { "productName": "", "productBrand": "", "productPrice": 0, "productImg": "", }
 
 const AddProduct = () => {
 
-     const [product, setProduct] = useState({ "productName": "", "productBrand": "", "productPrice": 0, "productImg": "", })
+     const [product, setProduct] = useState(initialState);
 
+     // * Add new Product into firebase Database;
      const AddProduct = async () => {
-          const productRef = collection(db, 'products');
-          await addDoc(productRef, product);
-          alert("Product Added")
+
      }
 
+     // * to upadate state with product-details
      const HandleChange = (e) => {
-          setProduct(prev => ({ ...prev, [e.target.name]: e.target.value }))
+
      }
 
      return (

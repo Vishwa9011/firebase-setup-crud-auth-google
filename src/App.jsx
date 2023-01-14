@@ -1,15 +1,18 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import './App.css'
-import Navbar from './Component/Navbar'
-import Home from './Pages/Home'
-import Login from './Pages/Login'
 import AddProduct from './Pages/AddProduct';
+import { Route, Routes } from 'react-router-dom'
+import Navbar from './Component/Navbar'
+import Login from './Pages/Login'
+import Home from './Pages/Home'
+import React from 'react'
+import './App.css'
 function App() {
 
      return (
           <div className="App">
+               {/* * Navbar */}
                <Navbar />
+
+               {/* //* Routes */}
                <Routes>
                     <Route path='/' element={<Home />} />
                </Routes>

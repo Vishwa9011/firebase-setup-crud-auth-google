@@ -1,102 +1,70 @@
 import { Box, Button, Heading, Input } from '@chakra-ui/react'
 import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth'
-import { auth, db, provider } from '../Firebase/firebase'
+import { auth, db, provider } from '../Firebase/firebase-config'
 import React, { useState } from 'react'
 import { doc, setDoc } from 'firebase/firestore'
 
-const signInWithGoogle = () => {
-     signInWithPopup(auth, provider)
-          .then((res) => {
-               console.log('res: ', res);
-               const name = res.user.displayName;
-               console.log('name: ', name);
-               const profilePic = res.user.photoURL;
-               console.log('profilePic: ', profilePic);
-               const email = res.user.email;
-               console.log('email: ', email);
-               const phone = res.user.phoneNumber;
-               console.log('phone: ', phone);
-          }).catch((err) => {
-               console.log('err: ', err);
-          })
-}
 
 
 const Login = () => {
 
-     // * signup with password variables
+     // * Signup with email and password States
      const [emailSignUp, setEmailSignUp] = useState('')
      const [passwordSignUp, setPasswordSignUp] = useState('')
 
-     // * signin with password variables
+     // * Signin with email and password States
      const [emailSignIn, setEmailSignIn] = useState('')
      const [passwordSignIn, setPasswordSignIn] = useState('')
 
-     // * Signup function
+     // * Signup function with email and password
      const Signup = async () => {
-          try {
-               const email = emailSignUp;
-               const password = passwordSignUp;
-               const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-               const user = userCredential.user;
 
-               // * Storing the details of user inside of our firebase database;
-               const UserCollectionRef = doc(db, "users", user.uid);
-               await setDoc(UserCollectionRef, { email, password })
-
-               setEmailSignUp("")
-               setPasswordSignUp("")
-               console.log('user: ', user);
-          } catch (error) {
-               console.log('error: ', error);
-          }
      }
 
+     // * SignIn function with email and password
      const SignIn = async () => {
-          try {
-               const email = emailSignIn;
-               const password = passwordSignIn;
-               const userCredential = await signInWithEmailAndPassword(auth, email, password);
-               const user = userCredential.user;
-               console.log('user: ', user);
 
-               setPasswordSignIn("")
-               setEmailSignIn("")
-               alert("successfully Login")
-          } catch (error) {
-               console.log('error: ', error);
-          }
      }
 
+     // * SignIn with Google
+     const signInWithGoogle = () => {
+
+     }
+
+     // * Logout
      const logout = async () => {
-          try {
-               await signOut(auth);
-               alert("successfully logout")
-          } catch (error) {
-               console.log('error: ', error);
-          }
+
      }
 
      return (
           <Box display={'flex'}>
+               {/* // * Sign Up part */}
                <Heading textAlign={'center'}>Sign Up</Heading>
                <Box w='30%' m='auto'>
-                    <Input type='email' placeholder='Email' value={emailSignUp} my='2' onChange={e => setEmailSignUp(e.target.value)} />
-                    <br />
-                    <Input type='password' placeholder='Password' my='2' value={passwordSignUp} onChange={e => setPasswordSignUp(e.target.value)} />
+                    <Box>
+                         <Input type='email' placeholder='Email' value={emailSignUp} my='2' onChange={e => setEmailSignUp(e.target.value)} />
+                    </Box>
+                    <Box>
+                         <Input type='password' placeholder='Password' my='2' value={passwordSignUp} onChange={e => setPasswordSignUp(e.target.value)} />
+                    </Box>
+
                     <Button onClick={Signup}>Sign Up</Button>
-                    <br />
                     <Button my='2' onClick={signInWithGoogle}>Sign In Google</Button>
                </Box>
+
+               {/* // * Sign In part */}
                <Heading textAlign={'center'}>Sign In</Heading>
                <Box w='30%' m='auto'>
-                    <Input type='email' placeholder='Email' value={emailSignIn} my='2' onChange={e => setEmailSignIn(e.target.value)} />
-                    <br />
-                    <Input type='password' placeholder='Password' my='2' value={passwordSignIn} onChange={e => setPasswordSignIn(e.target.value)} />
+                    <Box>
+                         <Input type='email' placeholder='Email' value={emailSignIn} my='2' onChange={e => setEmailSignIn(e.target.value)} />
+                    </Box>
+                    <Box>
+                         <Input type='password' placeholder='Password' my='2' value={passwordSignIn} onChange={e => setPasswordSignIn(e.target.value)} />
+                    </Box>
+
                     <Button onClick={SignIn}>Sign In</Button>
-                    <br />
                     <Button my='2' onClick={signInWithGoogle}>Sign In Google</Button>
-                    <Button my='2' onClick={logout}>Logout</Button>
+                    <Button m='2' onClick={logout}>Logout</Button>
                </Box>
           </Box>
      )
