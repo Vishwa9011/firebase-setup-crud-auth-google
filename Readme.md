@@ -16,4 +16,8 @@
 5. firebase deploy or firebase deploy --only hosting
 
 
-<!-- * 127.0.0 localhost -->
+### How to redeploy application 
+1. npm run build
+2. firebase deploy
+
+<!-- * 127.0.0 => localhost only for vite app-->

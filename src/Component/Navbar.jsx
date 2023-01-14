@@ -5,8 +5,8 @@ import UseAuth from '../custom-hooks/UseAuth';
 
 export default function Navbar() {
 
-     const currentUser = UseAuth();
-     console.log('currentUser: ', currentUser);
+     // const currentUser = UseAuth();
+     // console.log('currentUser: ', currentUser);
 
      const { colorMode, toggleColorMode } = useColorMode();
      return (
@@ -21,7 +21,7 @@ export default function Navbar() {
 
                          <Flex alignItems={'center'}>
                               <Stack direction={'row'} spacing={7}>
-                                   <Text>{currentUser ? currentUser?.email : 'Person'}</Text>
+                                   {/* <Text>{currentUser ? currentUser?.email : 'Person'}</Text> */}
                                    <Button onClick={toggleColorMode}>{colorMode === 'light' ? <MoonIcon /> : <SunIcon />}</Button>
                                    <Menu>
                                         <MenuButton as={Button} rounded={'full'} variant={'link'} cursor={'pointer'} minW={0}>

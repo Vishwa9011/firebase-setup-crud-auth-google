@@ -6,13 +6,16 @@ const UseAuth = () => {
      const [currentUser, setCurrentUser] = useState(null);
 
      useEffect(() => {
-          onAuthStateChanged(auth, (user) => {
+          const unsubscribe = onAuthStateChanged(auth, (user) => {
                if (user) {
                     setCurrentUser(user)
                } else {
                     setCurrentUser(null)
                }
           })
+
+          //todo: cleanpup function to prevent the memory leakage
+          return unsubscribe;
      }, [])
 
      return currentUser;
