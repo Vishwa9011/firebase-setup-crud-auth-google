@@ -1,9 +1,5 @@
 import { Box, Button, Heading, Input } from '@chakra-ui/react'
-import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth'
-import { auth, db, provider } from '../Firebase/firebase-config'
 import React, { useState } from 'react'
-import { doc, setDoc } from 'firebase/firestore'
-
 
 
 const Login = () => {
